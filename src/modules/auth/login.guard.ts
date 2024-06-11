@@ -58,7 +58,6 @@ export class LoginGuard implements CanActivate {
             request.user = data;
             return true;
         } catch (e) {
-            console.log('yferror', e);
             throw new UnauthorizedException('token 失效，请重新登录');
         }
     }

@@ -10,3 +10,4 @@ Admin Api 是 [my-admin](https://www.baidu.com) 的后端服务 基于 NestJS、
 
 模仿 [prune-api](https://github.com/KangodYan/prune-api)
 
+[tanstack](https://tanstack.com/)
