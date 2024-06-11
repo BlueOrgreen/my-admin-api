@@ -111,7 +111,7 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
             'user_role.user_id=user.id',
         ).innerJoinAndMapOne(`user_role.role`, RoleEntity, 'role', 'user_role.role_id=role.id');
         const res = await qb.getMany();
-        // console.log('testRes1===>', res);
+        console.log('testRes1===>', res);
 
         return res;
     }
@@ -125,6 +125,8 @@ export class UserService extends BaseService<UserEntity, UserRepository, FindPar
         const user = userNestRolesList[0];
         const role: RoleEntity[] = [];
         user.userRoles.forEach((userRole) => {
+            console.log('userRole', userRole);
+
             role.push(userRole.role);
         });
         // 删除 userRoles 字段

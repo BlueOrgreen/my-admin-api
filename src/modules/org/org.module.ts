@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthController } from '../auth/auth.controller';
@@ -15,14 +16,14 @@ import * as services from './services';
 
 @Module({
     imports: [
-        // JwtModule.registerAsync({
-        //     async useFactory() {
-        //         return {
-        //             // 这里sign起作用，verify不起作用
-        //             secret: process.env.JWT_SECRET,
-        //         };
-        //     },
-        // }),
+        JwtModule.registerAsync({
+            async useFactory() {
+                return {
+                    // 这里sign起作用，verify不起作用
+                    secret: process.env.JWT_SECRET,
+                };
+            },
+        }),
         TypeOrmModule.forFeature(Object.values(entities)),
         DatabaseModule.forRepository(Object.values(repositories)),
         DatabaseModule.forRepository(Object.values(systemRepositories)),

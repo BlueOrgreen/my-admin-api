@@ -40,13 +40,17 @@ export class LoginGuard implements CanActivate {
         if (!requireLogin) {
             return true;
         }
+
         // 从请求头获取授权信息
         const { authorization } = request.headers;
+        console.log('authorization===>', authorization);
         if (!authorization) {
             throw new UnauthorizedException('用户未登录');
         }
         try {
             const token = authorization.split(' ')[1];
+            console.log('secret===>', process.env.JWT_SECRET, process.env.PORT, token);
+
             const data = this.jwtService.verify(token, {
                 secret: process.env.JWT_SECRET,
             });
@@ -54,7 +58,7 @@ export class LoginGuard implements CanActivate {
             request.user = data;
             return true;
         } catch (e) {
-            console.log(e);
+            console.log('yferror', e);
             throw new UnauthorizedException('token 失效，请重新登录');
         }
     }

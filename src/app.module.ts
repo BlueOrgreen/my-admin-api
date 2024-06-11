@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { APP_GUARD } from '@nestjs/core';
 
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 
 import { database } from './config';
 import { LoginGuard } from './modules/auth/login.guard';
@@ -30,13 +30,13 @@ if (IS_DEV) {
             isGlobal: true,
             envFilePath,
         }),
-        JwtModule.register({
-            global: true,
-            secret: process.env.JWT_SECRET,
-            signOptions: {
-                expiresIn: `${60 * 60 * 24}s`,
-            },
-        }),
+        // JwtModule.register({
+        //     global: true,
+        //     secret: process.env.JWT_SECRET,
+        //     signOptions: {
+        //         expiresIn: `${60 * 60 * 24}s`,
+        //     },
+        // }),
     ],
     providers: [
         {
